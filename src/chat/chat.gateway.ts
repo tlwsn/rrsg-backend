@@ -159,10 +159,13 @@ export class ChatGateway
   }
 
   @Cron(CronExpression.EVERY_10_SECONDS)
-  updateUsers() {
+  async updateUsers() {
     const users = Object.keys(this.users);
-    users.forEach((user) => {
-      this.usersService.updateOnline(user, this.users[user].online);
-    });
+    await Promise.all(
+      users.map((user) => {
+        return this.usersService.updateOnline(user, this.users[user].online);
+      }),
+    );
+    this.users = {};
   }
 }
