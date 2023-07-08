@@ -15,5 +15,5 @@ export class CreateUserDto {
 
   @ApiProperty({ enum: Role })
   @IsEnum(Role)
-  type: Role;
+  role: Role;
 }

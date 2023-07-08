@@ -18,7 +18,7 @@ export class User {
   callsign: string;
 
   @ApiProperty()
-  @Prop()
+  @Prop({ default: 0 })
   online: number;
 
   @ApiProperty({ enum: Role })
